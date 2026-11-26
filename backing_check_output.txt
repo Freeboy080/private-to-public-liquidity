@@ -1,0 +1,8 @@
+step 1: run time 2026-11-26 08:08:28 UTC
+step 2: Rayls side, BRL1.p totalSupply
+   block 15236865 | supply raw 36818245000000000000
+step 3: Polygon side, BRL1 held by the bridge contract
+   block 97983374 | balance raw 36818245000000000000
+step 4: compare
+   difference raw: 0 | supply 36.818245 | locked 36.818245
+   note: the two reads are a few seconds apart, so a bridge in progress can show a small difference

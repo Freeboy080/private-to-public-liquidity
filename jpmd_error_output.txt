@@ -1,0 +1,13 @@
+step 1: matching the error selector 0x1a59ff33 against 36 candidate names
+   match: none of the candidates
+
+step 2: simulated calls from a random address (eth_call only)
+   random sender   : 0x0017aFe11749C16254568e71b55Ad04923887292
+   random recipient: 0x1f915264AdfB0001069411273F1A5FF96E8D4adb
+   transfer(recipient, 0) -> reverted, selector 0x1a59ff33 | argument 0x0017afe11749c16254568e71b55ad04923887292
+   approve(recipient, 0) -> reverted, selector 0x1a59ff33 | argument 0x1f915264adfb0001069411273f1a5ff96e8d4adb
+
+step 3: a public read from the same unknown address
+   balanceOf(recipient) -> 0x0000000000000000000000000000000000000000000000000000000000000000 (read works)
+
+done

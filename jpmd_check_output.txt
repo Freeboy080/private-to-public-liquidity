@@ -1,0 +1,46 @@
+step 1: connect, run time 2026-11-26T08:17:39.689Z
+   Base block 62453432
+
+step 2: token basics
+   name: JPMD
+   symbol: JPMD
+   decimals: 2
+   totalSupply: 100100000
+   owner: (call failed)
+   paused: false
+
+step 3: proxy slots
+   implementation: 0x620244706ba6c771ec417662a0bfb6fe6d1c5ae2
+   admin slot: 0x0000000000000000000000000000000000000000
+
+step 4: scanning implementation bytecode for known function selectors
+   implementation code size (bytes): 16663
+   present paused()
+   present pause()
+   present unpause()
+   absent  owner()
+   present hasRole(bytes32,address)
+   present grantRole(bytes32,address)
+   present DEFAULT_ADMIN_ROLE()
+   absent  isBlacklisted(address)
+   absent  blacklist(address)
+   absent  isBlocked(address)
+   absent  isAllowlisted(address)
+   absent  isWhitelisted(address)
+   absent  isFrozen(address)
+   absent  freeze(address)
+   present mint(address,uint256)
+   present burn(uint256)
+   absent  burn(address,uint256)
+   absent  forceTransfer(address,address,uint256)
+   absent  canTransfer(address,address,uint256)
+   absent  detectTransferRestriction(address,address,uint256)
+   absent  upgradeTo(address)
+   present upgradeToAndCall(address,bytes)
+   present proxiableUUID()
+   present UPGRADE_INTERFACE_VERSION()
+
+step 5: simulated transfer of 0 from a random address (eth_call, nothing is sent)
+   reverted: execution reverted (unknown custom error) | data: 0x1a59ff33000000000000000000000000b373360394e71ee568c7163b224fd05c7cba28b6
+
+done
