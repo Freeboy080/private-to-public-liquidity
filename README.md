@@ -18,42 +18,42 @@ A private blockchain is a chain where an operator or its members decide who can 
 
 ### 1. Validated cross-chain messaging
 
-Chainlink describes its Cross-Chain Interoperability Protocol (CCIP) as enabling "the secure transfer of data and value between public and private blockchains". In its words, a contract on the source chain starts the request, node operators validate it offchain, and a contract on the destination chain credits an account or unlocks an asset. It also describes an Automated Compliance Engine that runs allow-list checks before transfers.
+[Chainlink](https://chain.link/article/cross-chain-banking-infrastructure) describes its Cross-Chain Interoperability Protocol (CCIP) as enabling "the secure transfer of data and value between public and private blockchains". In its words, a contract on the source chain starts the request, node operators validate it offchain, and a contract on the destination chain credits an account or unlocks an asset. It also describes an Automated Compliance Engine that runs allow-list checks before transfers.
 
-In 2023 Swift ran an experiment with CCIP to test whether institutions could handle tokenised assets on public and private chains using their existing back-end systems. The Block lists ANZ, BNP Paribas, BNY Mellon, Citi, Clearstream, Euroclear, Lloyds Banking Group, SIX Digital Exchange and DTCC as participants, and reports that Swift said the tests "successfully demonstrated" a secure connection. These are the vendors' and press descriptions. I did not test CCIP.
+In 2023 Swift ran an experiment with CCIP to test whether institutions could handle tokenised assets on public and private chains using their existing back-end systems. [The Block](https://www.theblock.co/post/248293/swift-chainlink-ccip/) lists ANZ, BNP Paribas, BNY Mellon, Citi, Clearstream, Euroclear, Lloyds Banking Group, SIX Digital Exchange and DTCC as participants, and reports that Swift said the tests "successfully demonstrated" a secure connection. These are the vendors' and press descriptions. I did not test CCIP.
 
 ### 2. Bank-issued tokens on public chains
 
-JPM Coin (JPMD) is a USD deposit token issued by Kinexys by J.P. Morgan. The Block reported on Nov 12, 2025 that it rolled out to institutional clients on Base, as "a representation of JPMorgan's existing bank deposits on a public blockchain". JPMorgan's newsroom announced Ethereum availability on Oct 19, 2026 and says the token is "available to J.P. Morgan's institutional clients".
+JPM Coin (JPMD) is a USD deposit token issued by Kinexys by J.P. Morgan. [The Block](https://www.theblock.co/news/business/2025-11-12-jpmorgan-deposit-token-jpm-coin-378493) reported on Nov 12, 2025 that it rolled out to institutional clients on Base, as "a representation of JPMorgan's existing bank deposits on a public blockchain". [JPMorgan's newsroom](https://www.jpmorgan.com/payments/newsroom/jpm-coin-live-on-ethereum) announced Ethereum availability on Oct 19, 2026 and says the token is "available to J.P. Morgan's institutional clients".
 
-On Jan 7, 2026, Kinexys and Digital Asset announced plans to launch JPM Coin on the Canton Network, with a phased rollout through 2026. I did not verify whether it is live there. Canton describes itself, in its own words, as "the only public blockchain with real privacy built for regulated markets", with a Global Synchronizer as its interoperability backbone. Separately, Interstice Digital launched a non-custodial swap engine with FalconX that links Canton with Ethereum, Solana and Robinhood Chain (Cointelegraph, Aug 18, 2026). The initial supported assets were not disclosed.
+On Jan 7, 2026, Kinexys and Digital Asset [announced plans](https://www.theblock.co/news/business/2026-01-07-jpmorgan-jpm-coin-canton-384575) to launch JPM Coin on the Canton Network, with a phased rollout through 2026. I did not verify whether it is live there. [Canton](https://canton.network/) describes itself, in its own words, as "the only public blockchain with real privacy built for regulated markets", with a Global Synchronizer as its interoperability backbone. Separately, Interstice Digital launched a non-custodial swap engine with FalconX that links Canton with Ethereum, Solana and Robinhood Chain ([Cointelegraph](https://cointelegraph.com/news/interstice-falconx-cross-chain-swap-engine-canton-solana-ethereum-robinhood-chain), Aug 18, 2026). The initial supported assets were not disclosed.
 
 ### 3. Compliance-gated bridge
 
-The Rayls docs describe a direct route from a Rayls Sovereign ledger, a bank's own EVM ledger, to the Rayls Public Chain. Tokens are locked on the Sovereign ledger and a mirror token is minted on the public chain. Going back, the mirror is burned and the original is unlocked. Only users registered in a user governance contract can call it, which the docs describe as "how KYC and compliance requirements are carried into the bridge itself". Each message carries a stored revert payload, so in the docs' words "Tokens are either delivered to the destination or returned to the sender".
+The [Rayls docs](https://docs.rayls.com/docs/connecting-rayls-sovereign-to-the-public-chain) describe a direct route from a Rayls Sovereign ledger, a bank's own EVM ledger, to the Rayls Public Chain. Tokens are locked on the Sovereign ledger and a mirror token is minted on the public chain. Going back, the mirror is burned and the original is unlocked. Only users registered in a user governance contract can call it, which the docs describe as "how KYC and compliance requirements are carried into the bridge itself". Each message carries a stored revert payload, so in the docs' words "Tokens are either delivered to the destination or returned to the sender".
 
-A Rayls blog post (vendor-authored) gives a settlement example: a local-currency tokenised deposit paid into a liquidity provider account inside the Sovereign chain triggers issuance of a dollar-denominated stablecoin on the Public Chain, with the currency conversion at the boundary. I read the docs and the post. I did not trace a Sovereign-to-Public transaction.
+A [Rayls blog post](https://www.rayls.com/blog/the-private-public-settlement-flow-tokenised-deposits-and-stablecoins-on-rayls) (vendor-authored) gives a settlement example: a local-currency tokenised deposit paid into a liquidity provider account inside the Sovereign chain triggers issuance of a dollar-denominated stablecoin on the Public Chain, with the currency conversion at the boundary. I read the docs and the post. I did not trace a Sovereign-to-Public transaction.
 
 ## What I checked myself
 
 ### Check 1: is BRL1.p backed 1:1 on the other chain?
 
-BRL1.p is a bridged token on the Rayls Public Chain. Rayls's guide says the bridge uses LayerZero, holds BRL1 in a contract on Polygon, and mints the same amount of BRL1.p. I compared the two sides with public RPC reads.
+BRL1.p is a bridged token on the Rayls Public Chain. [Rayls's guide](https://docs.rayls.com/docs/get-brl1p) says the bridge uses LayerZero, holds BRL1 in a contract on Polygon, and mints the same amount of BRL1.p. I compared the two sides with public RPC reads.
 
 - Run time: 2026-11-26 08:08:28 UTC
 - Rayls: block 15,236,865, BRL1.p (proxy 0xA069d3798FEAb32994aC5D98A9F011DA6024f334) totalSupply raw 36818245000000000000
 - Polygon: block 97,983,374, BRL1 (0x5C067C80C00eCd2345b05E83A3e758eF799C40B5) balanceOf the bridge contract 0x3Ea6BaC7d4138BcC126D0F17aE10122B3620abA6, raw 36818245000000000000
 - Difference: 0
 
-On Oct 21, when the supply was 250,013.482911, the same comparison also gave a difference of 0 (details in the earlier gist). So the backing held at both readings. Both bridge contracts have an owner account. As of Oct 21 it was the same ordinary account on both chains (0x633Ac5e2315b973417e8caa6B3Ad2162e0461ce1). I did not audit the bridge code or what the owner can do.
+On Oct 21, when the supply was 250,013.482911, the same comparison also gave a difference of 0 (details in the earlier gist). So the locked amount matched the supply at both readings, even though the supply was very different each time. Both bridge contracts have an owner account. As of Oct 21 it was the same ordinary account on both chains (0x633Ac5e2315b973417e8caa6B3Ad2162e0461ce1). I did not audit the bridge code or what the owner can do.
 
 ### Check 2: is access gated in the contract?
 
-Rayls's first live vault (TokenOne TKONE02, 0x1811630B90e6966573e809270a5e9316A25DE6fe) takes BRL1.p and runs on Lagoon v0.6.0. Its contract keeps an access list. By Nov 21 it logged 6 addToWhitelist calls, 1 revokeFromWhitelist and 1 switchAccessMode call. Its share price and total assets matched Rayls's own vaults page. Method, hashes and files are in the vault gist: https://gist.github.com/Freeboy080/4117a1371857eb65a335775094aaab65
+Rayls's first live vault (TokenOne TKONE02, 0x1811630B90e6966573e809270a5e9316A25DE6fe) takes BRL1.p and runs on Lagoon v0.6.0. Its contract keeps an access list. By Nov 21 it logged 6 addToWhitelist calls, 1 revokeFromWhitelist and 1 switchAccessMode call. Its share price and total assets matched [Rayls's own vaults page](https://dapp.rayls.com/vaults). Method, hashes and files are in the vault gist: https://gist.github.com/Freeboy080/4117a1371857eb65a335775094aaab65
 
 ### Check 3: does a bank-issued token check addresses in its own contract?
 
-JPM Coin's deposit token (JPMD) on Base is at 0x7e0aedc93d9f898be835a44bfca3842e52416b82. I took the address from CoinMarketCap's listing, and BaseScan labels it Kinexys. I did not find it on a JPMorgan page. I used public RPC reads and simulations (eth_call, nothing was sent) on Nov 26, 2026 at 08:17 UTC, Base block 62,453,432.
+JPM Coin's deposit token (JPMD) on Base is at 0x7e0aedc93d9f898be835a44bfca3842e52416b82. I took the address from [CoinMarketCap's listing](https://coinmarketcap.com/currencies/jp-morgan-deposit-token/), and [BaseScan](https://basescan.org/token/0x7e0aedc93d9f898be835a44bfca3842e52416b82) labels it Kinexys. I did not find it on a JPMorgan page. I used public RPC reads and simulations (eth_call, nothing was sent) on Nov 26, 2026 at 08:17 UTC, Base block 62,453,432.
 
 - Name and symbol JPMD, 2 decimals, total supply 1,001,000.00, and paused() returns false.
 - The token is a proxy. Its implementation is 0x620244706ba6c771ec417662a0bfb6fe6d1c5ae2.
@@ -73,6 +73,7 @@ These patterns are not rivals. A messaging network connects many chains. An issu
 - The private side of the Rayls route is documented only. I traced no Sovereign ledger transaction.
 - CCIP, JPM Coin, Canton and the Interstice engine are described from vendor pages and press, not tested by me.
 - I did not verify whether JPM Coin is live on Canton.
+- Chainlink, Swift, J.P. Morgan and Canton are examples I describe from their own pages and press. I do not claim any of them works with Rayls.
 - Check 3 used simulations only. The JPMD address comes from CoinMarketCap and a BaseScan label, the error's name is unidentified, I did not identify who holds the roles, and I did not test an approved account.
 - Checks 2 and 3 are different contracts on different chains. They show that both keep track of addresses, not that they work the same way.
 - The two reads in Check 1 are a few seconds apart, so a bridge transfer in progress can show a small difference.
